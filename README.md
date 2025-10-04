@@ -21,4 +21,10 @@ Tracks Sunder Armor work in raids and dungeons, shows attempts, applied hits, an
 
 ## Installation
 1. Copy the **SunderLord** folder into `Interface/AddOns`.
-2. Confirm `SunderLord.toc` contains:
+
+## How It Works
+1. Attempts come from `UNIT_CASTEVENT` (spell id + name match).
+2. Failures are parsed from combat messages and counted separately: **miss, dodge, parry, immune**.
+3. **Applied = attempts − (miss + dodge + parry + immune)** (needed because the combat log only shows the first five afflicted lines).
+4. A short pairing window matches casts to outcomes to prevent double counting.
+5. Per-player stats are tracked locally, sorted, and summarized for posting.
