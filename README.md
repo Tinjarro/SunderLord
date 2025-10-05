@@ -9,7 +9,7 @@ Tracks Sunder Armor work in raids and dungeons, shows attempts, applied hits, an
 
 ### Verification at Runtime
 - You should see attempts increase immediately on any nearby warrior your combat log can see.  
-- If `SUPERWOW_VERSION` is missing, SunderLord will still load but will not function correctly.
+- If `SUPERWOW` is missing, SunderLord will still load but will not function correctly.
 
 ## Files
 - `SunderLord.toc`  
