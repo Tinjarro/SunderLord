@@ -47,142 +47,217 @@ local function trim(s) s = s or ""; s = string.gsub(s, "^%s+", ""); s = string.g
 
 -- =================
 -- MESSAGE POOLS
--- =================
--- (every line has %s)  -- your original pools kept 1:1
 
-local POOL_100 = {
-  "%s hit 100 Sunders, turns out that button wasn't decorative after all.",
-  "%s reached 100 Sunders, we knew you had it in you, eventually.",
-  "%s officially found the Sunder key, repeatedly, one hundred times.",
-  "%s at 100 Sunders, slow clap, but a clap nonetheless.",
-  "Somewhere, a sunder dummy sheds a tear of pride for %s.",
-  "%s at 100 Sunders, and yes, we can confirm the ability still works.",
-  "%s, pressing Sunder so you do not have to, at least 100 times.",
-  "Congratulations %s on 100 Sunders, that ability missing error must be long gone.",
-  "100 Sunders for %s, the bar icon is glowing with validation.",
-  "%s hit 100 Sunders, the crowd yawns, but appreciatively.",
-  "It only took 100 Sunders for us to believe %s had it bound.",
-  "%s at 100 Sunders achieved, applause, but politely restrained.",
-  "%s hit 100 Sunders, noted.",
-  "100 Sunders recorded by %s, try not to strain yourself.",
-  "%s reached 100 Sunders, clearly that sunder button does in fact exist on the bar.",
+-- New: POOL_150 (warming up, still humble/brag lite)
+local POOL_150 = {
+  "%s hits 150 Sunders, consistency unlocked.",
+  "150 Sunders for %s, the tank exhales a little.",
+  "%s at 150 Sunders, this is an actual habit now.",
+  "%s reached 150 Sunders, raid leaders nod in approving spreadsheets.",
+  "%s posts 150 Sunders, armor files for a restraining order.",
+  "One hundred fifty for %s, not glamorous, just correct.",
+  "%s clocks 150 Sunders, healers appreciate the reduced incoming pain.",
+  "%s at 150 Sunders, the sunder key is officially worn in.",
+  "150 Sunders recorded by %s, dependable is the new exciting.",
+  "%s reaches 150 Sunders, the debuff timer thanks you personally.",
+  "%s logged 150 Sunders, snacks remain uneaten, work gets done.",
+  "At 150 Sunders, %s proves repetition is a feature.",
+  "%s marks 150 Sunders, the boss's AC rating weeps softly.",
+  "%s at 150 Sunders, the fundamentals are fundamental.",
+  "150 Sunders for %s, professional-grade button pressing.",
+  "%s hit 150 Sunders, this is either dedication or a very sticky key.",
+  "%s crests 150 Sunders, the raid notices and so does the repair bill.",
+  "%s notches 150 Sunders, momentum achieved.",
+  "%s crosses 150 Sunders, this is the way.",
+  "%s tallies 150 Sunders; we like where this is going.",
 }
 
-local POOL_250 = {
-  "%s reached 250 Sunders, and somewhere a bard begins writing a song.",
+
+
+local POOL_50 = {
+  "%s hit 50 Sunders, turns out that button wasn't decorative after all.",
+  "%s reached 50 Sunders, we knew you had it in you, eventually.",
+  "%s officially found the Sunder key, repeatedly, 50 times.",
+  "%s at 50 Sunders, slow clap, but a clap nonetheless.",
+  "50 Sunders. Somewhere, a sunder dummy sheds a tear of pride for %s.",
+  "%s at 50 Sunders, and yes, we can confirm the ability still works.",
+  "%s, pressing Sunder so you do not have to, at least 50 times.",
+  "Congratulations %s on 50 Sunders, that ability missing error must be long gone.",
+  "50 Sunders for %s, the bar icon is glowing with validation.",
+  "%s hit 50 Sunders, the crowd yawns, but appreciatively.",
+  "It only took 50 Sunders for us to believe %s had it bound.",
+  "%s at 50 Sunders achieved, applause, but politely restrained.",
+  "%s hit 50 Sunders, noted.",
+  "50 Sunders recorded by %s, try not to strain yourself.",
+  "%s reached 50 Sunders, clearly that sunder button does in fact exist on the bar.",
+  "%s hits 50 Sunders, fundamentals unlocked.",
+  "50 Sunders for %s, we call that showing up.",
+  "%s at 50 Sunders, armor notices, barely, but it notices.",
+  "%s reaches 50 Sunders; somewhere a raid lead stops sighing.",
+  "%s logged 50 Sunders; consistent is sexy.",
+  "50 Sunders recorded for %s, the debuff is feeling supported.",
+  "%s clocks 50 Sunders; tiny violins play a proud tune.",
+  "%s hit 50 Sunders, the spreadsheet smiles politely.",
+  "At 50 Sunders, %s is now legally a Sunderer.",
+  "%s at 50 Sunders; the keybind is officially real.",
+  "%s made it to 50 Sunders; guild insurance premiums decline 0.1%.",
+  "50 Sunders by %s; the boss's armor files a complaint.",
+  "%s at 50 Sunders, the tank nods without looking back.",
+  "%s reaches 50 Sunders, the macro works and so do you.",
+  "%s posts 50 Sunders; clean, quiet, correct.",
+  "%s taps 50 Sunders; that's the stuff.",
+  "%s with 50 Sunders; we appreciate your service.",
+  "%s delivers 50 Sunders; we love a reliable adult.",
+  "%s checks in 50 Sunders; attendance marked.",
+  "%s completes 50 Sunders; the golf clap has layers.",
+  "%s hits 50 Sunders; the anvil gives a respectful ping.",
+  "50 Sunders for %s; the repair vendor cracks a tiny smile.",
+  "%s reaches 50 Sunders; the raid leader underlines your name once.",
+  "50 Sunders for %s; fresh armor shavings on the floor.",
+  "%s spends rage on 50 Sunders; approved by accounting.",
+  "%s puts up 50 Sunders; durability checks out.",
+  "%s hits 50 Sunders; add one tiny star to the clipboard.",
+  "%s records 50 Sunders; the guild bank labels you \"useful.\"",
+  "%s lands 50 Sunders; the debuff cap sends a thank-you note.",
+  "%s hits 50 Sunders; the shield creaks in acknowledgment.",
+  "%s dials up 50 Sunders; form, fit, function.",
+  "%s reaches 50 Sunders; your bar key survives the ordeal.",
+}
+
+
+local POOL_150 = {
+  "%s clocks 150 Sunders; blacksmiths light a candle in concern.",
+  "150 Sunders for %s; healers unclench by two percent.",
+  "150 Sunders for %s; the boss adds you to enemies list, page one.",
+  "%s dials up 150 Sunders; pull timers look shorter already.",
+  "%s completes 150 Sunders; fundamentals with a little swagger.",
+  "%s reached 150 Sunders, and somewhere a bard begins writing a song.",
   "%s pressed Sunder 250 times, and the server didn't crash, miracles happen.",
-  "%s has achieved 250 Sunders, shattering all known records of button loyalty.",
-  "250 Sunders, one warrior, truly Azeroth's greatest love story starring %s.",
-  "%s has struck 250 Sunders, the spirits of warriors past nod in approval.",
-  "%s at 250 Sunders, a sundering master by any reasonable measure.",
-  "250 Sunders achieved, %s now wears the title Sunderlord.",
-  "%s at 250 Sunders, armor yields on principle.",
-  "250 Sunders recorded, mastery acknowledged for %s, objections denied.",
-  "%s reaches 250 Sunders, the anvil nods, the shield sighs.",
-  "250 Sunders complete, %s instructs the boss on proper posture.",
-  "%s at 250 Sunders, the spellbook consults him now.",
-  "250 Sunders logged, %s sets policy on armor integrity.",
-  "%s crosses 250 Sunders, mastery confirmed, humility optional.",
-  "250 Sunders reached, %s has nothing left to prove, but will.",
+  "%s has achieved 150 Sunders, shattering all known records of button loyalty.",
+  "150 Sunders, one warrior, truly Azeroth's greatest love story starring %s.",
+  "%s has struck 150 Sunders, the spirits of warriors past nod in approval.",
+  "%s at 150 Sunders, a sundering master by any reasonable measure.",
+  "150 Sunders achieved, %s now wears the title SunderApprentice.",
+  "%s at 150 Sunders, armor yields on principle.",
+  "150 Sunders recorded, mastery acknowledged for %s, objections denied.",
+  "%s reaches 150 Sunders, the anvil nods, the shield sighs.",
+  "150 Sunders complete, %s instructs the boss on proper posture.",
+  "%s at 150 Sunders, the spellbook consults him now.",
+  "150 Sunders logged, %s sets policy on armor integrity.",
+  "%s crosses 150 Sunders, mastery confirmed, humility optional.",
+  "150 Sunders reached, %s has nothing left to prove, but will.",
+  "%s at 150 Sunders; the raid lead stops calling for sunders.",
+  "150 Sunders by %s; the combat log asks for a cold towel.",
+}
+
+
+local POOL_300 = {
+  "%s has sundered 300 times, the legends now whisper his name with unease.",
+  "%s delivered 300 Sunders, the line between warrior and demigod grows thin.",
+  "%s at 300 Sunders, blacksmiths retire knowing their craft is obsolete.",
+  "%s completed 300 Sunders, Azeroth itself files a complaint for excessive force.",
+  "%s has sundered 300 times, the lorekeepers invent a new pantheon seat.",
+  "300 Sunders struck by %s, the walls of Blackrock tremble in recognition.",
+  "%s at 300 Sunders, armor no longer resists, it simply resigns.",
+  "300 Sunders achieved, and still %s hungers, hubris fully justified.",
+  "%s has struck 300 Sunders, the ancients of Lordaeron stir uneasily.",
+  "300 Sunders done by %s, the raid frames mark him not as DPS, but as inevitability.",
+  "%s at 300 Sunders, the anvil cracks, the forge bows, the steel weeps.",
+  "300 Sunders tallied for %s, even Ragnaros lowers his hammer in tribute.",
+  "%s at 300 Sunders, kings crown him, dragons flee him, healers fear him.",
+  "300 Sunders delivered by %s, parchment cannot hold the tale, only song will do.",
+  "%s crossed 300 Sunders, the sundering saga is now carved into myth.",
 }
 
 local POOL_500 = {
-  "%s has sundered 500 times, the legends now whisper his name with unease.",
-  "%s delivered 500 Sunders, the line between warrior and demigod grows thin.",
-  "%s at 500 Sunders, blacksmiths retire knowing their craft is obsolete.",
-  "%s completed 500 Sunders, Azeroth itself files a complaint for excessive force.",
-  "%s has sundered 500 times, the lorekeepers invent a new pantheon seat.",
-  "500 Sunders struck by %s, the walls of Blackrock tremble in recognition.",
-  "%s at 500 Sunders, armor no longer resists, it simply resigns.",
-  "500 Sunders achieved, and still %s hungers, hubris fully justified.",
-  "%s has struck 500 Sunders, the ancients of Lordaeron stir uneasily.",
-  "500 Sunders done by %s, the raid frames mark him not as DPS, but as inevitability.",
-  "%s at 500 Sunders, the anvil cracks, the forge bows, the steel weeps.",
-  "500 Sunders tallied for %s, even Ragnaros lowers his hammer in tribute.",
-  "%s at 500 Sunders, kings crown him, dragons flee him, healers fear him.",
-  "500 Sunders delivered by %s, parchment cannot hold the tale, only song will do.",
-  "%s crossed 500 Sunders, the sundering saga is now carved into myth.",
+  "%s at 500 Sunders, prophecy fulfilled, destiny reluctantly confirmed.",
+  "500 Sunders struck, even the Titans would consult %s for technique.",
+  "%s reached 500 Sunders, the bones of ancient dragons shift in fear.",
+  "500 Sunders tallied for %s, Azeroth adjusts its axis in resignation.",
+  "%s has sundered 500 times, the scrolls of prophecy update mid sentence.",
+  "500 Sunders achieved, the Dark Portal wavers under the pressure of %s.",
+  "%s at 500 Sunders, the Keepers of Ulduar pretend not to notice.",
+  "500 Sunders recorded, the echoes shake Karazhan's forgotten halls for %s.",
+  "%s struck 500 Sunders, the shadows of Blackwing Lair bow their heads.",
+  "500 Sunders complete, Elune herself sighs in bemused acknowledgment of %s.",
+  "%s reached 500 Sunders, even the elements request a brief intermission.",
+  "500 Sunders delivered, the libraries of Dalaran reorder themselves around %s.",
+  "%s has achieved 500 Sunders, the world tree shivers, unimpressed but wary.",
+  "500 Sunders done, the hourglass of Nozdormu skips a beat for %s.",
+  "%s crossed 500 Sunders, Azeroth takes note, mostly out of self preservation.",
+}
+
+local POOL_600 = {
+  "%s at 600 Sunders, the laws of physics quietly resign.",
+  "600 Sunders struck, the Twisting Nether files a formal complaint about %s.",
+  "%s reached 600 Sunders, the Old Gods consider early retirement.",
+  "600 Sunders achieved, the sands of time spill out of Nozdormu's hourglass for %s.",
+  "%s at 600 Sunders, even molten iron refuses to harden in protest.",
+  "600 Sunders delivered, Azeroth's ley lines reroute themselves to avoid %s.",
+  "%s has sundered 600 times, armor no longer breaks, it evaporates.",
+  "600 Sunders tallied, the mountains of Dun Morogh bow ever so slightly to %s.",
+  "%s at 600 Sunders, the sky flickers as if reconsidering the script.",
+  "600 Sunders logged, the whispers of C'Thun are briefly drowned out by %s.",
+  "%s crossed 600 Sunders, Stormwind's walls request hazard pay.",
+  "600 Sunders recorded, the forges of Blackrock go silent in protest of %s.",
+  "%s has struck 600 Sunders, a tremor races across Kalimdor's spine.",
+  "600 Sunders complete, even the runes of Naxxramas falter for a moment before %s.",
+  "%s at 600 Sunders, reality itself coughs politely and looks away.",
 }
 
 local POOL_700 = {
-  "%s at 700 Sunders, prophecy fulfilled, destiny reluctantly confirmed.",
-  "700 Sunders struck, even the Titans would consult %s for technique.",
-  "%s reached 700 Sunders, the bones of ancient dragons shift in fear.",
-  "700 Sunders tallied for %s, Azeroth adjusts its axis in resignation.",
-  "%s has sundered 700 times, the scrolls of prophecy update mid sentence.",
-  "700 Sunders achieved, the Dark Portal wavers under the pressure of %s.",
-  "%s at 700 Sunders, the Keepers of Ulduar pretend not to notice.",
-  "700 Sunders recorded, the echoes shake Karazhan's forgotten halls for %s.",
-  "%s struck 700 Sunders, the shadows of Blackwing Lair bow their heads.",
-  "700 Sunders complete, Elune herself sighs in bemused acknowledgment of %s.",
-  "%s reached 700 Sunders, even the elements request a brief intermission.",
-  "700 Sunders delivered, the libraries of Dalaran reorder themselves around %s.",
-  "%s has achieved 700 Sunders, the world tree shivers, unimpressed but wary.",
-  "700 Sunders done, the hourglass of Nozdormu skips a beat for %s.",
-  "%s crossed 700 Sunders, Azeroth takes note, mostly out of self preservation.",
+  "%s has reached 700 Sunders, no longer bound by mortal titles, he walks Azeroth as the Lord of Sundering, a force no armor dares defy.",
+  "700 Sunders struck, and the echoes crown %s as the Avatar of Broken Steel, a name to be cursed and worshiped in equal measure.",
+  "%s at 700 Sunders, the banners of kingdoms fall as he claims the mantle of High Warlord of Ruin, unchallenged and absolute.",
+  "700 Sunders achieved, and Azeroth itself bends, for the Herald of Shattered Armor, %s, has stepped beyond the reach of prophecy.",
+  "%s has delivered 700 Sunders, the ancient halls resound with his new title, Champion of the Final Sundering.",
+  "700 Sunders complete, and in the silence that follows, the world knows its master as %s, the Eternal Sunderer of Ages.",
+  "%s at 700 Sunders, even the bravest dragons retreat, for the Throne of Sundering now belongs to him alone.",
+  "700 Sunders recorded, the ancients whisper of %s, the one who sunders destiny itself and writes new laws in steel.",
+  "%s has struck 700 Sunders, and the forges cool in reverence to the one true Warden of Ruin.",
+  "700 Sunders delivered, and with each swing, %s ascends, the Ascendant of Armor's End, feared by kings and gods alike.",
+  "%s at 700 Sunders, the scrolls rewrite themselves, naming him the Arbiter of Sundering, sovereign of broken shields.",
+  "700 Sunders tallied, and the world quakes at the rise of %s, the Endless Breaker, whose blows mark the end of eras.",
+  "%s has reached 700 Sunders, destiny itself kneels before the Blade of Sundering, humbled and undone.",
+  "700 Sunders achieved, and the chorus of ages sings the name of %s, the Shatterer of Empires, breaker of all.",
+  "%s at 700 Sunders, a legend beyond recounting, crowned as the Sundermaster Eternal, whose will no shield survives.",
 }
 
 local POOL_800 = {
-  "%s at 800 Sunders, the laws of physics quietly resign.",
-  "800 Sunders struck, the Twisting Nether files a formal complaint about %s.",
-  "%s reached 800 Sunders, the Old Gods consider early retirement.",
-  "800 Sunders achieved, the sands of time spill out of Nozdormu's hourglass for %s.",
-  "%s at 800 Sunders, even molten iron refuses to harden in protest.",
-  "800 Sunders delivered, Azeroth's ley lines reroute themselves to avoid %s.",
-  "%s has sundered 800 times, armor no longer breaks, it evaporates.",
-  "800 Sunders tallied, the mountains of Dun Morogh bow ever so slightly to %s.",
-  "%s at 800 Sunders, the sky flickers as if reconsidering the script.",
-  "800 Sunders logged, the whispers of C'Thun are briefly drowned out by %s.",
-  "%s crossed 800 Sunders, Stormwind's walls request hazard pay.",
-  "800 Sunders recorded, the forges of Blackrock go silent in protest of %s.",
-  "%s has struck 800 Sunders, a tremor races across Kalimdor's spine.",
-  "800 Sunders complete, even the runes of Naxxramas falter for a moment before %s.",
-  "%s at 800 Sunders, reality itself coughs politely and looks away.",
-}
-
-local POOL_900 = {
-  "%s has reached 900 Sunders, no longer bound by mortal titles, he walks Azeroth as the Lord of Sundering, a force no armor dares defy.",
-  "900 Sunders struck, and the echoes crown %s as the Avatar of Broken Steel, a name to be cursed and worshiped in equal measure.",
-  "%s at 900 Sunders, the banners of kingdoms fall as he claims the mantle of High Warlord of Ruin, unchallenged and absolute.",
-  "900 Sunders achieved, and Azeroth itself bends, for the Herald of Shattered Armor, %s, has stepped beyond the reach of prophecy.",
-  "%s has delivered 900 Sunders, the ancient halls resound with his new title, Champion of the Final Sundering.",
-  "900 Sunders complete, and in the silence that follows, the world knows its master as %s, the Eternal Sunderer of Ages.",
-  "%s at 900 Sunders, even the bravest dragons retreat, for the Throne of Sundering now belongs to him alone.",
-  "900 Sunders recorded, the ancients whisper of %s, the one who sunders destiny itself and writes new laws in steel.",
-  "%s has struck 900 Sunders, and the forges cool in reverence to the one true Warden of Ruin.",
-  "900 Sunders delivered, and with each swing, %s ascends, the Ascendant of Armor's End, feared by kings and gods alike.",
-  "%s at 900 Sunders, the scrolls rewrite themselves, naming him the Arbiter of Sundering, sovereign of broken shields.",
-  "900 Sunders tallied, and the world quakes at the rise of %s, the Endless Breaker, whose blows mark the end of eras.",
-  "%s has reached 900 Sunders, destiny itself kneels before the Blade of Sundering, humbled and undone.",
-  "900 Sunders achieved, and the chorus of ages sings the name of %s, the Shatterer of Empires, breaker of all.",
-  "%s at 900 Sunders, a legend beyond recounting, crowned as the Sundermaster Eternal, whose will no shield survives.",
+  "%s has reached 800 Sunders. No scroll, no library, no bard could ever hope to capture the breadth of his strikes. History itself stops at this page, for nothing written beyond could compare.",
+  "800 Sunders achieved. The thrones of men lie vacant, the halls of kings fall silent, and even the Titans bow their heads. In this age, %s does not play the role of warrior, he plays the role of ending.",
+  "%s at 800 Sunders. The oceans still, the mountains wait, and the skies part as if to witness. Mortals can only whisper his name, for he now speaks with the voice of ruin itself.",
+  "800 Sunders delivered. Shields no longer break, they choose not to exist at all. %s walks beyond prophecy, carrying with him the silence of all things shattered.",
+  "%s has struck 800 Sunders. In that moment, Azeroth itself shudders, not in fear but in recognition of its new master. The age of warriors is over, and only his legend remains.",
+  "800 Sunders complete. The walls of Stormwind, the gates of Orgrimmar, the towers of Dalaran, all tremble at the thought of another swing. %s needs no kingdom, for the world itself kneels.",
+  "%s reached 800 Sunders. The ancients of Lordaeron rise from their rest, not to fight but to bear witness. From this day forth, no tale can be told without his name carved across it.",
+  "800 Sunders tallied. The sundering is no longer an act, but a law of existence. %s speaks, and armor obeys, stone cracks, and time itself yields.",
+  "%s at 800 Sunders. The forge is cold, the anvil shattered, and the song of steel replaced by silence. Even gods grow quiet, for they know the final blow has fallen.",
+  "800 Sunders achieved. There is no applause, no cheer, no rival, only the echo of eternity breaking. %s does not claim victory, for there is nothing left to claim.",
 }
 
 local POOL_1000 = {
-  "%s has reached 1000 Sunders. No scroll, no library, no bard could ever hope to capture the breadth of his strikes. History itself stops at this page, for nothing written beyond could compare.",
-  "1000 Sunders achieved. The thrones of men lie vacant, the halls of kings fall silent, and even the Titans bow their heads. In this age, %s does not play the role of warrior, he plays the role of ending.",
-  "%s at 1000 Sunders. The oceans still, the mountains wait, and the skies part as if to witness. Mortals can only whisper his name, for he now speaks with the voice of ruin itself.",
-  "1000 Sunders delivered. Shields no longer break, they choose not to exist at all. %s walks beyond prophecy, carrying with him the silence of all things shattered.",
-  "%s has struck 1000 Sunders. In that moment, Azeroth itself shudders, not in fear but in recognition of its new master. The age of warriors is over, and only his legend remains.",
-  "1000 Sunders complete. The walls of Stormwind, the gates of Orgrimmar, the towers of Dalaran, all tremble at the thought of another swing. %s needs no kingdom, for the world itself kneels.",
-  "%s reached 1000 Sunders. The ancients of Lordaeron rise from their rest, not to fight but to bear witness. From this day forth, no tale can be told without his name carved across it.",
-  "1000 Sunders tallied. The sundering is no longer an act, but a law of existence. %s speaks, and armor obeys, stone cracks, and time itself yields.",
-  "%s at 1000 Sunders. The forge is cold, the anvil shattered, and the song of steel replaced by silence. Even gods grow quiet, for they know the final blow has fallen.",
-  "1000 Sunders achieved. There is no applause, no cheer, no rival, only the echo of eternity breaking. %s does not claim victory, for there is nothing left to claim.",
+  "1000 Sunders; the count is complete, the armor yields, the raid bears witness. By right of steel and stubbornness, %s is named Sunder Lord.",
+  "1000 Sunders; metal thins, shields confess, even the anvil nods and steps aside. What began as habit finished as craft; %s is Sunder Lord.",
+  "1000 Sunders; the raid stops asking, the boss stops pretending, the record stands. Patient, precise, relentless; %s ascends as Sunder Lord.",
+  "1000 Sunders; a milestone, a verdict, a title earned. Pull after pull the debuff held, the plan worked; %s is Sunder Lord.",
+  "1000 Sunders; the counter rolls and the room finally smiles. Quiet excellence made loud results; %s takes the name Sunder Lord.",
 }
 
--- NOTE: I’m not changing your thresholds. Keep whatever you have here.
--- If you want to switch back to 100/250/... later, just change THRESH_ACTIVE.
-local THRESH_ACTIVE = {100,250,500,700,800,900,1000}           -- (kept from your file)
-local TIER_BY_INDEX = {100,250,500,700,800,900,1000}
+
+local THRESH_ACTIVE = {50,150,300,500,600,700,800,1000}
+local TIER_BY_INDEX = {50,150,300,500,600,700,800,1000}
 
 local POOLS_BY_TIER = {
-  [100]  = POOL_100,
-  [250]  = POOL_250,
+  [50] = POOL_50,
+  [150] = POOL_150,
+  [50]  = POOL_50,
+  [150]  = POOL_150,
+  [300]  = POOL_300,
   [500]  = POOL_500,
+  [600]  = POOL_600,
   [700]  = POOL_700,
-  [800]  = POOL_800,
-  [900]  = POOL_900,
+  [800] = POOL_800,
   [1000] = POOL_1000,
 }
 
@@ -371,8 +446,14 @@ end
 
 -- (Optional) On login, mark already-crossed thresholds as fired so we don't replay old ones.
 local function PullSyncFromSunderLord()
-  if type(SunderLord_GetAllHits) ~= "function" then return end
-  local map = SunderLord_GetAllHits()
+  local map
+  if type(SunderLord_GetAllAttempts) == "function" then
+    map = SunderLord_GetAllAttempts()
+  elseif type(SunderLord_GetAllHits) == "function" then
+    map = SunderLord_GetAllHits()
+  else
+    return
+  end
   if type(map) ~= "table" then return end
   for name, hits in pairs(map) do
     local firedFor = ensureFiredFor(name)

@@ -1,5 +1,5 @@
 --[[
-SunderLord v1.1 (Turtle/1.12 + SuperWoW)
+SunderLord v1.102 (Turtle/1.12 + SuperWoW)
 
 
 Persistence & UX:
@@ -97,6 +97,15 @@ function SunderLord_GetAllHits()
   end
   return out
 end
+-- Public: return current sunder "attempts" for every tracked warrior.
+function SunderLord_GetAllAttempts()
+  local out = {}
+  for name, b in pairs(RUNTIME.by or {}) do
+    out[name] = tonumber(b and b.attempts or 0) or 0
+  end
+  return out
+end
+
 
 ----------------------------------------------------------------
 -- SV binding + defaults + hydration
@@ -352,7 +361,7 @@ local function addAttempt(caster)
 
   -- milestone: feed derived hits for THIS caster
   if SunderLord_MilestoneCheck then
-    SunderLord_MilestoneCheck(derived_hits(b) or 0, caster)
+    SunderLord_MilestoneCheck(tonumber((b and b.attempts) or 0) or 0, caster)
   end
 end
 
@@ -380,7 +389,7 @@ local function addOutcome(caster, key)
   if not SL_FLUSHED_ONCE then SL_FLUSHED_ONCE = true; save_snapshot() end
 
   if SunderLord_MilestoneCheck then
-    SunderLord_MilestoneCheck(derived_hits(b) or 0, caster)
+    SunderLord_MilestoneCheck(tonumber((b and b.attempts) or 0) or 0, caster)
   end
 end
 

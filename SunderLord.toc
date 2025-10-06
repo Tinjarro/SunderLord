@@ -2,7 +2,7 @@
 ## Title: SunderLord
 ## Notes: Tracks Sunder Armor attempts/outcomes with DPSMate-style persistence (snapshot + totals).
 ## Author: Tinjarro
-## Version: SunderLord v1.1
+## Version: SunderLord v1.102
 ## SavedVariables: SunderLordDB
 ## SavedVariablesPerCharacter: SunderLordDBChar
 
